@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "377754891615",
+    "firebase_url": "https://reminderprj-b3aaa.firebaseio.com",
+    "project_id": "reminderprj-b3aaa",
+    "storage_bucket": "reminderprj-b3aaa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377754891615:android:0396c2e2c4a05b2a",
+        "android_client_info": {
+          "package_name": "com.example.alvin.reminderprj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377754891615-69tilf65fheea4pukc2akcraqf86e2j9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alvin.reminderprj",
+            "certificate_hash": "d766619b0f09e25296771216f3c807405d8d2db5"
+          }
+        },
+        {
+          "client_id": "377754891615-e937344tje82806vmgll7eldc5v0pu76.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfqgPDwAI7jhpS-sDQknseNYlV9iaQnGE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377754891615-e937344tje82806vmgll7eldc5v0pu76.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
