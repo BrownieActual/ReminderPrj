@@ -1,5 +1,6 @@
 package com.example.alvin.reminderprj;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -90,10 +91,12 @@ public class startPage extends AppCompatActivity {
                             Toast.makeText(startPage.this, "Authentication Failed",
                                     Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(startPage.this, "Signin Successfully",
-                                    Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(startPage.this, "Signed In Successfully",
+//                                    Toast.LENGTH_SHORT).show();
                             emailEdt.setText("");
                             passwordEdt.setText("");
+                            Intent intent = new Intent(startPage.this, mainActivity.class);
+                            startActivity(intent);
                         }
 
                         // ...
