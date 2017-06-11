@@ -10,15 +10,15 @@
         android:id="@+id/activityList"
         android:layout_width="match_parent"
         android:layout_height="470dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp" />
+        tools:layout_editor_absoluteY="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <LinearLayout
         android:layout_below="@+id/activityList"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent">        >
 
         <Button
             android:id="@+id/addActivity"
