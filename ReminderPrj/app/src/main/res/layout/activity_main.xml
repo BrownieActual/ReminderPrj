@@ -18,10 +18,11 @@
     <LinearLayout
         android:layout_below="@+id/activityList"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">        >
+        android:layout_width="match_parent">
 
         <Button
             android:id="@+id/addActivity"
+            android:onClick="addActivityIntent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.33"

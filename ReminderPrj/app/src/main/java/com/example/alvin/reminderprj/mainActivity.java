@@ -1,7 +1,9 @@
 package com.example.alvin.reminderprj;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class mainActivity extends AppCompatActivity {
 
@@ -11,4 +13,10 @@ public class mainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("ReminderPrj");
     }
+
+    public void addActivityIntent(View view){
+        Intent intent = new Intent(mainActivity.this, addActivity.class);
+        startActivity(intent);
+    }
+
 }
