@@ -9,7 +9,7 @@
     <ListView
         android:id="@+id/activityList"
         android:layout_width="match_parent"
-        android:layout_height="470dp"
+        android:layout_height="500dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp"
         android:layout_alignParentTop="true"
@@ -18,7 +18,9 @@
     <LinearLayout
         android:layout_below="@+id/activityList"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:weightSum="1"
+        android:gravity="center|bottom">
 
         <Button
             android:id="@+id/addActivity"

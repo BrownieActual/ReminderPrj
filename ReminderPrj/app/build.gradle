@@ -10,6 +10,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //Dont check PNG files STRICTLY
+        aaptOptions.cruncherEnabled = false
+        aaptOptions.useNewCruncher = false
+        //Dont check PNG files STRICTLY
     }
     buildTypes {
         release {
