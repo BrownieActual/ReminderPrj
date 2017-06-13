@@ -26,6 +26,7 @@
         android:layout_alignStart="@+id/editTitle"
         android:layout_above="@+id/editDescription"
         android:layout_below="@+id/editTitle"
+        android:onClick="SelectImage"
         android:layout_alignEnd="@+id/editTitle" />
 
     <EditText
