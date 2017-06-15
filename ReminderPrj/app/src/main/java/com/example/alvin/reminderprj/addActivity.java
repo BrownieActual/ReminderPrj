@@ -9,35 +9,77 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
-
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class addActivity extends AppCompatActivity {
-    private StorageReference mStorageRef;
+
     private static final int UPLOAD_PHOTO = 100;
     private static final int TAKE_PHOTO = 200;
     private String titleString;
     private String descriptionString;
     private Bitmap imgString;
+    private Bitmap emojiString;
+    private long dateString;
+    public String username = getIntent().getStringExtra("username");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         setTitle("Add");
-        mStorageRef = FirebaseStorage.getInstance().getReference();
     }
 
-    private void add() {
+    public void add(View view) {
+        blogContent theBlogContent = null;
 
+        EditText title = (EditText) findViewById(R.id.editTitle);
+        titleString = title.toString();
+        theBlogContent.setTitle(titleString);
+
+        ImageView image = (ImageView) findViewById(R.id.editImage);
+        image.buildDrawingCache();
+        imgString = image.getDrawingCache();
+        theBlogContent.setBlogImg(imgString);
+
+        EditText description = (EditText) findViewById(R.id.editDescription);
+        descriptionString = description.toString();
+        theBlogContent.setBlogDescription(descriptionString);
+
+        theBlogContent.setEmoji(emojiString);
+
+        dateString = new Date().getTime();
+        theBlogContent.setDate(dateString);
+ 
+        toMainActivity();
+        clearFields();
+    }
+    public void setHappy(View view){
+        ImageView image = (ImageView) findViewById(R.id.happyIcon);
+        image.buildDrawingCache();
+        emojiString = image.getDrawingCache();
+    }
+    public void setNeut(View view){
+        ImageView image = (ImageView) findViewById(R.id.neutIcon);
+        image.buildDrawingCache();
+        emojiString = image.getDrawingCache();
+    }
+    public void setSad(View view){
+        ImageView image = (ImageView) findViewById(R.id.sadIcon);
+        image.buildDrawingCache();
+        emojiString = image.getDrawingCache();
     }
 
-    private void discard() {
-
+    public void discard(View view) {
+        toMainActivity();
+        clearFields();
     }
 
     private void toMainActivity() {
@@ -46,14 +88,21 @@ public class addActivity extends AppCompatActivity {
     }
 
     private void clearFields() {
+        EditText title = (EditText) findViewById(R.id.editTitle);
+        title.setText("");
 
+        ImageView image = (ImageView) findViewById(R.id.editImage);
+        image.setImageResource(R.drawable.camera);
+
+        EditText description = (EditText) findViewById(R.id.editDescription);
+        description.setText("");
     }
 
     public void SelectImage(View view) {
         CharSequence picker[] = new CharSequence[] {"Upload a photo", "Take a photo"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choose an action");
+        builder.setTitle("Choose an Action");
         builder.setItems(picker, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

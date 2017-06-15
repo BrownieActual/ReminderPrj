@@ -1,10 +1,7 @@
 package com.example.alvin.reminderprj;
 
-
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.ImageView;
 
 public class blogContent extends AppCompatActivity {
 
@@ -12,14 +9,16 @@ public class blogContent extends AppCompatActivity {
     private String description;
     private Bitmap img;
     private Bitmap emoji;
+    private long date;
     public blogContent(){
 
     }
-    public blogContent(String title, String description, Bitmap img, Bitmap emoji){
+    public blogContent(String title, String description, Bitmap img, Bitmap emoji, long date){
         this.title = title;
         this.description = description;
         this.img = img;
         this.emoji = emoji;
+        this.date = date;
     }
 
     public String getBlogTitle() {
@@ -52,5 +51,12 @@ public class blogContent extends AppCompatActivity {
 
     public void setEmoji(Bitmap emoji){
         this.emoji=emoji;
+    }
+
+    public long getDate(){
+        return date;
+    }
+    public void setDate(long date){
+        this.date = date;
     }
 }

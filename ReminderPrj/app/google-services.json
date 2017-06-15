@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "377754891615-nt0uorusbbam1b2buai3o9o1b8i2digu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alvin.reminderprj",
+            "certificate_hash": "97935088cab001bce299cd0e6214f57844f4f37f"
+          }
+        },
+        {
           "client_id": "377754891615-69tilf65fheea4pukc2akcraqf86e2j9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

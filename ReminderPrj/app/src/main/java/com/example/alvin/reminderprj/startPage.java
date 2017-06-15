@@ -16,11 +16,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class startPage extends AppCompatActivity {
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String TAG = "123";
     private EditText emailEdt;
     private EditText passwordEdt;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,9 +95,12 @@ public class startPage extends AppCompatActivity {
                         }else{
 //                            Toast.makeText(startPage.this, "Signed In Successfully",
 //                                    Toast.LENGTH_SHORT).show();
+                            String username = (emailEdt.getText().toString());
                             emailEdt.setText("");
                             passwordEdt.setText("");
+
                             Intent intent = new Intent(startPage.this, mainActivity.class);
+                            intent.putExtra("username",username);
                             startActivity(intent);
                         }
 
@@ -103,10 +108,10 @@ public class startPage extends AppCompatActivity {
                     }
                 });
     }
-
+    //NOT NEEDED
     public void signOut(View view){
-        FirebaseAuth.getInstance().signOut();
-    }
+        FirebaseAuth.getInstance().signOut();}
+    //NOT NEEDED
 
     @Override
     public void onStart() {
@@ -121,4 +126,6 @@ public class startPage extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
+
 }
