@@ -30,8 +30,6 @@ public class addActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mStorageRef = FirebaseStorage.getInstance().getReference();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         setTitle("Add");
@@ -57,7 +55,7 @@ public class addActivity extends AppCompatActivity {
 
         dateString = new Date().getTime();
         theBlogContent.setDate(dateString);
- 
+
         toMainActivity();
         clearFields();
     }
