@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 
 public class mainActivity extends AppCompatActivity {
-    public String username = getIntent().getStringExtra("username");
 
+    public String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        String username = getIntent().getStringExtra("username");
         setTitle("Welcome to ReminderPrj, " + username);
     }
 

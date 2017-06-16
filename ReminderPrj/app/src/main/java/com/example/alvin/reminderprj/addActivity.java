@@ -11,11 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.Date;
+
+
 
 public class addActivity extends AppCompatActivity {
 
@@ -26,13 +30,17 @@ public class addActivity extends AppCompatActivity {
     private Bitmap imgString;
     private Bitmap emojiString;
     private long dateString;
-    public String username = getIntent().getStringExtra("username");
+    public String username;
+    private DatabaseReference mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         setTitle("Add");
+        username = getIntent().getStringExtra("username");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     public void add(View view) {
@@ -55,6 +63,8 @@ public class addActivity extends AppCompatActivity {
 
         dateString = new Date().getTime();
         theBlogContent.setDate(dateString);
+
+
 
         toMainActivity();
         clearFields();
