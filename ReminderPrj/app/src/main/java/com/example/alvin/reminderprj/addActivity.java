@@ -3,22 +3,25 @@ package com.example.alvin.reminderprj;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Date;
-
 
 
 public class addActivity extends AppCompatActivity {
@@ -41,6 +44,7 @@ public class addActivity extends AppCompatActivity {
         setTitle("Add");
         username = getIntent().getStringExtra("username");
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
     }
 
     public void add(View view) {
@@ -153,9 +157,12 @@ public class addActivity extends AppCompatActivity {
 
                     ImageView imageView = (ImageView) findViewById(R.id.editImage);
                     imageView.setImageBitmap(bitmap);
+
+                    getImageData(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
         }
 //        take photo
         if (requestCode == TAKE_PHOTO && resultCode == RESULT_OK) {
@@ -163,7 +170,27 @@ public class addActivity extends AppCompatActivity {
             Bitmap bitmap = (Bitmap) extra.get("data");
             ImageView imageView = (ImageView) findViewById(R.id.editImage);
             imageView.setImageBitmap(bitmap);
+            getImageData(bitmap);
         }
+    }
+
+    public void getImageData(Bitmap bmp) {
+            //convert bitmap to base64 to store in database
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, bao); // bmp is bitmap from user image file
+//        bmp.recycle();
+        byte[] byteArray = bao.toByteArray();
+        String imageB64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        Log.d("TAG", imageB64);
+
+        //convert back to bitmap
+        byte[] decodedString = Base64.decode(imageB64, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+
+        Toast toast = Toast.makeText(getApplicationContext(),imageB64,Toast.LENGTH_SHORT);
+        toast.show();
+        //  store & retrieve this string to firebase
     }
 
 }

@@ -30,6 +30,7 @@ public class startPage extends AppCompatActivity {
         setContentView(R.layout.activity_start_page);
         setTitle("Welcome");
 
+
         mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -48,6 +49,9 @@ public class startPage extends AppCompatActivity {
         };
         emailEdt = (EditText) findViewById(R.id.field_email);
         passwordEdt = (EditText) findViewById(R.id.field_password);
+
+        emailEdt.setText("a@hotmail.com");
+        passwordEdt.setText("123456");
     }
     public void createAccount(View view){
         String email = emailEdt.getText().toString();

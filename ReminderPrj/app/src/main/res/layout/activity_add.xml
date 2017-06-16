@@ -94,5 +94,4 @@
         android:layout_above="@+id/discardBlogContent"
         android:layout_alignStart="@+id/discardBlogContent" />
 
-
 </RelativeLayout>
