@@ -3,7 +3,6 @@ package com.example.alvin.reminderprj;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -21,20 +20,18 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Date;
 
 
 public class addActivity extends AppCompatActivity {
 
     private static final int UPLOAD_PHOTO = 100;
     private static final int TAKE_PHOTO = 200;
-    private String titleString;
-    private String descriptionString;
-    private Bitmap imgString;
+    private String imageB64;
     private Bitmap emojiString;
     private long dateString;
     public String username;
-    private DatabaseReference mDatabase;
+    private String REF = "messages";
+
 
 
     @Override
@@ -43,31 +40,26 @@ public class addActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
         setTitle("Add");
         username = getIntent().getStringExtra("username");
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
 
     }
 
     public void add(View view) {
-        blogContent theBlogContent = null;
 
         EditText title = (EditText) findViewById(R.id.editTitle);
-        titleString = title.toString();
-        theBlogContent.setTitle(titleString);
-
-        ImageView image = (ImageView) findViewById(R.id.editImage);
-        image.buildDrawingCache();
-        imgString = image.getDrawingCache();
-        theBlogContent.setBlogImg(imgString);
-
         EditText description = (EditText) findViewById(R.id.editDescription);
-        descriptionString = description.toString();
-        theBlogContent.setBlogDescription(descriptionString);
 
-        theBlogContent.setEmoji(emojiString);
+         String titleMessage = title.getText().toString();
+         String imageUp =  imageB64.getBytes().toString();
+         String descripMessage = description.getText().toString();
 
-        dateString = new Date().getTime();
-        theBlogContent.setDate(dateString);
-
+//        blogContent data = new blogContent(titleMessage);
+        blogContent chat = new blogContent(titleMessage, imageUp, descripMessage);
+        FirebaseDatabase.getInstance().getReference(REF).push().setValue(chat);
 
 
         toMainActivity();
@@ -95,8 +87,7 @@ public class addActivity extends AppCompatActivity {
     }
 
     private void toMainActivity() {
-        Intent intent = new Intent(addActivity.this, mainActivity.class);
-        startActivity(intent);
+        this.finish();
     }
 
     private void clearFields() {
@@ -174,22 +165,23 @@ public class addActivity extends AppCompatActivity {
         }
     }
 
-    public void getImageData(Bitmap bmp) {
+    public String getImageData(Bitmap bmp) {
             //convert bitmap to base64 to store in database
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.PNG, 100, bao); // bmp is bitmap from user image file
-//        bmp.recycle();
         byte[] byteArray = bao.toByteArray();
-        String imageB64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+         imageB64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
         Log.d("TAG", imageB64);
 
         //convert back to bitmap
-        byte[] decodedString = Base64.decode(imageB64, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+//        byte[] decodedString = Base64.decode(imageB64, Base64.DEFAULT);
+//         decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
 
         Toast toast = Toast.makeText(getApplicationContext(),imageB64,Toast.LENGTH_SHORT);
         toast.show();
+
+        return imageB64;
         //  store & retrieve this string to firebase
     }
 

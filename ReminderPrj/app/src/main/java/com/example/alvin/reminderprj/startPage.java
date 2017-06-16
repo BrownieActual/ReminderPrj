@@ -6,7 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +26,7 @@ public class startPage extends AppCompatActivity {
     private EditText passwordEdt;
     private String username;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +40,37 @@ public class startPage extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+                Button signinBtn = (Button) findViewById(R.id.email_sign_in_button);
+                Button signOutBtn = (Button) findViewById(R.id.email_sign_out_button);
+                Button creataccBtn = (Button) findViewById(R.id.email_create_account_button);
+                Button startProgram = (Button) findViewById(R.id.start_program);
+                TextView hi = (TextView) findViewById(R.id.hi_username);
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+//                            Toast.makeText(startPage.this, "Signed In Successfully",
+//                                    Toast.LENGTH_SHORT).show();
+                    username = user.getEmail();
+                    Toast.makeText(getApplicationContext(),"Signin successfully", Toast.LENGTH_SHORT).show();
+                    emailEdt.setText("");
+                    passwordEdt.setText("");
+                    signinBtn.setVisibility(View.GONE);
+                    creataccBtn.setVisibility(View.GONE);
+                    signOutBtn.setVisibility(View.VISIBLE);
+                    startProgram.setVisibility(View.VISIBLE);
+                    hi.setText("Hi, " + username);
+
+
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
+                    Toast.makeText(getApplicationContext(),"Signout successfully", Toast.LENGTH_SHORT).show();
+                    signinBtn.setVisibility(View.VISIBLE);
+                    creataccBtn.setVisibility(View.VISIBLE);
+                    signOutBtn.setVisibility(View.GONE);
+                    startProgram.setVisibility(View.GONE);
+                    hi.setText("Please sign in or create an account.");
+
                 }
                 // ...
             }
@@ -96,26 +124,22 @@ public class startPage extends AppCompatActivity {
                             Log.w(TAG, "signInWithEmail:failed", task.getException());
                             Toast.makeText(startPage.this, "Authentication Failed",
                                     Toast.LENGTH_SHORT).show();
-                        }else{
-//                            Toast.makeText(startPage.this, "Signed In Successfully",
-//                                    Toast.LENGTH_SHORT).show();
-                            String username = (emailEdt.getText().toString());
-                            emailEdt.setText("");
-                            passwordEdt.setText("");
-
-                            Intent intent = new Intent(startPage.this, mainActivity.class);
-                            intent.putExtra("username",username);
-                            startActivity(intent);
                         }
 
                         // ...
                     }
                 });
     }
-    //NOT NEEDED
+
     public void signOut(View view){
-        FirebaseAuth.getInstance().signOut();}
-    //NOT NEEDED
+        FirebaseAuth.getInstance().signOut();
+    }
+    public void startProgram(View view){
+        Intent intent = new Intent(startPage.this, mainActivity.class);
+        intent.putExtra("username",username);
+        startActivity(intent);
+    }
+
 
     @Override
     public void onStart() {

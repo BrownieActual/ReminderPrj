@@ -12,18 +12,28 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:id="@+id/title"
-        android:textStyle="normal|bold" />
+        android:text="qwer"
+        android:textStyle="normal|bold"
+        android:textSize="18sp" />
+
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignBottom="@+id/title"
-        android:id="@+id/img"/>
+        android:src="@drawable/camera"
+        android:id="@+id/img"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/img"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/description" />
+        android:text="loooii"
+        android:id="@+id/description"
+        android:layout_alignParentStart="true"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_marginTop="20dp" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

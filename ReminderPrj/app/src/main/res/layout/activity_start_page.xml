@@ -24,16 +24,23 @@
         android:layout_marginTop="32dp"
         app:srcCompat="@drawable/logo" />
 
+    <TextView
+        android:id="@+id/hi_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:text="Hi"
+        android:layout_marginTop="-50dp"
+        android:layout_centerHorizontal="true"/>
+
     <LinearLayout
         android:id="@+id/email_password_fields"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:weight="1"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
         android:layout_below="@+id/imageView"
-        android:layout_alignParentStart="true">
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <EditText
             android:id="@+id/field_email"
@@ -73,6 +80,18 @@
             android:layout_marginRight="30dp"
             android:text="Sign In" />
 
+        <Button
+            android:id="@+id/email_sign_out_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="signOut"
+            android:background="@color/blue"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="30dp"
+            android:visibility="gone"
+            android:text="Sign Out" />
+
 
         <Button
             android:id="@+id/email_create_account_button"
@@ -84,6 +103,18 @@
             android:background="@android:color/holo_green_dark"
             android:layout_marginLeft="30dp"
             android:text="Register" />
+
+        <Button
+            android:id="@+id/start_program"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="100dp"
+            android:onClick="startProgram"
+            android:background="@android:color/holo_green_dark"
+            android:layout_marginLeft="30dp"
+            android:visibility="gone"
+            android:text="Start Program" />
     </LinearLayout>
 
 
