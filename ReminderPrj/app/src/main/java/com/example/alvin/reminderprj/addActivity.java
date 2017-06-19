@@ -13,8 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,8 +30,9 @@ public class addActivity extends AppCompatActivity {
     private Bitmap emojiString;
     private long dateString;
     public String username;
-    private String REF = "messages";
-
+    public String userUid;
+//    private String REF;
+    private FirebaseAuth firebaseAuth;
 
 
     @Override
@@ -39,12 +40,15 @@ public class addActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         setTitle("Add");
+
         username = getIntent().getStringExtra("username");
+        userUid = getIntent().getStringExtra("userUid");
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
         myRef.setValue("Hello, World!");
+
 
     }
 
@@ -52,15 +56,13 @@ public class addActivity extends AppCompatActivity {
 
         EditText title = (EditText) findViewById(R.id.editTitle);
         EditText description = (EditText) findViewById(R.id.editDescription);
-
          String titleMessage = title.getText().toString();
-         String imageUp =  imageB64.getBytes().toString();
+        //image64 = String of image
          String descripMessage = description.getText().toString();
 
-//        blogContent data = new blogContent(titleMessage);
-        blogContent chat = new blogContent(titleMessage, imageUp, descripMessage);
-        FirebaseDatabase.getInstance().getReference(REF).push().setValue(chat);
 
+        blogContent chat = new blogContent(titleMessage, imageB64, descripMessage, username);
+        FirebaseDatabase.getInstance().getReference(userUid).push().setValue(chat);
 
         toMainActivity();
         clearFields();
@@ -178,11 +180,10 @@ public class addActivity extends AppCompatActivity {
 //         decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
 
-        Toast toast = Toast.makeText(getApplicationContext(),imageB64,Toast.LENGTH_SHORT);
-        toast.show();
+//        Toast toast = Toast.makeText(getApplicationContext(),,Toast.LENGTH_SHORT);
+//        toast.show();
 
         return imageB64;
-        //  store & retrieve this string to firebase
     }
 
 }

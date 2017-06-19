@@ -7,17 +7,28 @@ public class blogContent {
     private String title;
     private String description;
     private String img;
+    private String usercheck;
     private Bitmap emoji;
     private long date;
     public blogContent(){
 
     }
-    public blogContent(String title, String img, String description){
+    public blogContent(String title, String img, String description, String usercheck){
         this.title = title;
         this.description = description;
         this.img = img;
+        this.usercheck = usercheck;
         this.emoji = emoji;
         this.date = date;
+    }
+
+    public void setUsercheck(String usercheck) {
+        this.usercheck = usercheck;
+    }
+
+    public String getUsercheck() {
+        return usercheck;
+
     }
 
     public String getTitle() {

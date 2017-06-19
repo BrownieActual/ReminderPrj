@@ -25,6 +25,7 @@ public class startPage extends AppCompatActivity {
     private EditText emailEdt;
     private EditText passwordEdt;
     private String username;
+    private String userUid;
 
 
     @Override
@@ -51,6 +52,7 @@ public class startPage extends AppCompatActivity {
 //                            Toast.makeText(startPage.this, "Signed In Successfully",
 //                                    Toast.LENGTH_SHORT).show();
                     username = user.getEmail();
+                    userUid = user.getUid();
                     Toast.makeText(getApplicationContext(),"Signin successfully", Toast.LENGTH_SHORT).show();
                     emailEdt.setText("");
                     passwordEdt.setText("");
@@ -137,6 +139,7 @@ public class startPage extends AppCompatActivity {
     public void startProgram(View view){
         Intent intent = new Intent(startPage.this, mainActivity.class);
         intent.putExtra("username",username);
+        intent.putExtra("userUid",userUid);
         startActivity(intent);
     }
 
