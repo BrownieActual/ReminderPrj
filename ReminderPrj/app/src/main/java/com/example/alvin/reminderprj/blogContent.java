@@ -10,8 +10,7 @@ public class blogContent {
     private String description;
     private String img;
     private String usercheck;
-    private Bitmap emoji;
-    private long date;
+
     public blogContent(){
 
     }
@@ -20,8 +19,7 @@ public class blogContent {
         this.description = description;
         this.img = img;
         this.usercheck = usercheck;
-        this.emoji = emoji;
-        this.date = date;
+
     }
 
 
@@ -59,21 +57,7 @@ public class blogContent {
         this.img = img;
     }
 
-    public Bitmap getEmoji(){
-        return emoji;
-    }
 
-    public void setEmoji(Bitmap emoji){
-        this.emoji=emoji;
-    }
-
-    public long getDate(){
-        return date;
-    }
-
-    public void setDate(long date){
-        this.date = date;
-    }
 
 
 }

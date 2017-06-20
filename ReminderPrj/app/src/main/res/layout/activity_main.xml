@@ -27,16 +27,11 @@
             android:onClick="addActivityIntent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.33"
+            android:layout_weight="0.5"
             android:text="Add" />
 
 
-        <Button
-            android:id="@+id/delActivity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.33"
-            android:text="Delete" />
+
     </LinearLayout>
 </RelativeLayout>
 

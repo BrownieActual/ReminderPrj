@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -61,35 +62,13 @@ public class addActivity extends AppCompatActivity {
         //image64 = String of image
          String descripMessage = description.getText().toString();
 
-        blogContent chat = new blogContent(titleMessage, imageB64, descripMessage, username);
-        FirebaseDatabase.getInstance().getReference(userUid).push().setValue(chat);
+            blogContent chat = new blogContent(titleMessage, imageB64, descripMessage, username);
+            FirebaseDatabase.getInstance().getReference(userUid).push().setValue(chat);
+            toMainActivity();
+            clearFields();
 
-        toMainActivity();
-        clearFields();
     }
 
-    public void setHappy(View view){
-        ImageView image = (ImageView) findViewById(R.id.happyIcon);
-        image.buildDrawingCache();
-        emojiString = image.getDrawingCache();
-    }
-
-    public void setNeut(View view){
-        ImageView image = (ImageView) findViewById(R.id.neutIcon);
-        image.buildDrawingCache();
-        emojiString = image.getDrawingCache();
-    }
-
-    public void setSad(View view){
-        ImageView image = (ImageView) findViewById(R.id.sadIcon);
-        image.buildDrawingCache();
-        emojiString = image.getDrawingCache();
-    }
-
-    public void discard(View view) {
-        toMainActivity();
-        clearFields();
-    }
 
     private void toMainActivity() {  //Ends content addition and moves to main activity
         this.finish();
