@@ -1,3 +1,5 @@
+//Activity is the first page and takes care of login through firebase
+
 package com.example.alvin.reminderprj;
 
 import android.content.Intent;
@@ -19,11 +21,11 @@ import com.google.firebase.database.FirebaseDatabase;
 public class mainActivity extends AppCompatActivity {
     public String username;
     public String userUid;
-    FirebaseListAdapter<blogContent> adapter;
+    FirebaseListAdapter<blogContent> adapter; //Declare connection to firebase
     private FirebaseAuth firebaseAuth;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //Bsically the main page
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -35,12 +37,12 @@ public class mainActivity extends AppCompatActivity {
         final String user = username;
 
         final ListView listView = (ListView) findViewById(R.id.activityList);
-        adapter = new FirebaseListAdapter<blogContent>(this, blogContent.class, R.layout.activity_blog_content,
-                FirebaseDatabase.getInstance().getReference(userUid)) {
+        adapter = new FirebaseListAdapter<blogContent>(this, blogContent.class, R.layout.activity_blog_content, //connects to firebase
+                FirebaseDatabase.getInstance().getReference(userUid)) { //Pulls user ID from firebase
             @Override
-            protected void populateView(View v, blogContent model, int position) {
+            protected void populateView(View v, blogContent model, int position) { //checks if user exists in database
                     String checking = model.getUsercheck();
-                if(user.equals(checking)) {
+                if(user.equals(checking)) { //exists
 
                         TextView title = (TextView) v.findViewById(R.id.title);
                         ImageView img = (ImageView) v.findViewById(R.id.img);
@@ -54,19 +56,19 @@ public class mainActivity extends AppCompatActivity {
                         img.setImageBitmap(bitmap);
                         Log.d("TAG", model.getImg());
 
-                }else{
-                    Log.d("TAG","no user i sud");
+                }else{ //if doesn't exist
+                    Log.d("TAG","no such user found");
                 }
             }
 
         };
         listView.setAdapter(adapter);
     }
-    public void addActivityIntent(View view){
-        Intent intent = new Intent(mainActivity.this, addActivity.class);
+    public void addActivityIntent(View view){ //get user and password and sends screen to addactivity
+        Intent intent = new Intent(mainActivity.this, addActivity.class);  //declares destination
         intent.putExtra("username", username);
         intent.putExtra("userUid", userUid);
-        startActivity(intent);
+        startActivity(intent);  //sends user
     }
 
 }

@@ -1,3 +1,5 @@
+//Activity Oversees the content addition to the app
+
 package com.example.alvin.reminderprj;
 
 import android.content.DialogInterface;
@@ -49,7 +51,6 @@ public class addActivity extends AppCompatActivity {
 
         myRef.setValue("Hello, World!");
 
-
     }
 
     public void add(View view) {
@@ -60,23 +61,25 @@ public class addActivity extends AppCompatActivity {
         //image64 = String of image
          String descripMessage = description.getText().toString();
 
-
         blogContent chat = new blogContent(titleMessage, imageB64, descripMessage, username);
         FirebaseDatabase.getInstance().getReference(userUid).push().setValue(chat);
 
         toMainActivity();
         clearFields();
     }
+
     public void setHappy(View view){
         ImageView image = (ImageView) findViewById(R.id.happyIcon);
         image.buildDrawingCache();
         emojiString = image.getDrawingCache();
     }
+
     public void setNeut(View view){
         ImageView image = (ImageView) findViewById(R.id.neutIcon);
         image.buildDrawingCache();
         emojiString = image.getDrawingCache();
     }
+
     public void setSad(View view){
         ImageView image = (ImageView) findViewById(R.id.sadIcon);
         image.buildDrawingCache();
@@ -88,11 +91,11 @@ public class addActivity extends AppCompatActivity {
         clearFields();
     }
 
-    private void toMainActivity() {
+    private void toMainActivity() {  //Ends content addition and moves to main activity
         this.finish();
     }
 
-    private void clearFields() {
+    private void clearFields() { //Clears all field to default values(blank)
         EditText title = (EditText) findViewById(R.id.editTitle);
         title.setText("");
 
@@ -103,7 +106,7 @@ public class addActivity extends AppCompatActivity {
         description.setText("");
     }
 
-    public void SelectImage(View view) {
+    public void SelectImage(View view) {  //function for selecting image
         CharSequence picker[] = new CharSequence[] {"Upload a photo", "Take a photo"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
