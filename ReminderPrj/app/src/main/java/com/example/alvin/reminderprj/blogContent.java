@@ -2,7 +2,9 @@
 
 package com.example.alvin.reminderprj;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.view.View;
 
 public class blogContent {
 
@@ -21,7 +23,6 @@ public class blogContent {
         this.usercheck = usercheck;
 
     }
-
 
     // Get/Set functions for various datas
 
@@ -56,8 +57,5 @@ public class blogContent {
     public void  setImg(String img) {
         this.img = img;
     }
-
-
-
 
 }

@@ -30,14 +30,10 @@ public class addActivity extends AppCompatActivity {
     private static final int UPLOAD_PHOTO = 100;
     private static final int TAKE_PHOTO = 200;
     private String imageB64;
-    private Bitmap emojiString;
-    private long dateString;
     public String username;
     public String userUid;
 //    private String REF;
     private FirebaseAuth firebaseAuth;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,14 +62,10 @@ public class addActivity extends AppCompatActivity {
             FirebaseDatabase.getInstance().getReference(userUid).push().setValue(chat);
             toMainActivity();
             clearFields();
-
     }
-
-
     private void toMainActivity() {  //Ends content addition and moves to main activity
         this.finish();
     }
-
     private void clearFields() { //Clears all field to default values(blank)
         EditText title = (EditText) findViewById(R.id.editTitle);
         title.setText("");
@@ -156,12 +148,9 @@ public class addActivity extends AppCompatActivity {
         byte[] byteArray = bao.toByteArray();
          imageB64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
         Log.d("TAG", imageB64);
-
-        //convert back to bitmap
+//convert back to bitmap
 //        byte[] decodedString = Base64.decode(imageB64, Base64.DEFAULT);
-//         decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-
-
+//        decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 //        Toast toast = Toast.makeText(getApplicationContext(),,Toast.LENGTH_SHORT);
 //        toast.show();
 

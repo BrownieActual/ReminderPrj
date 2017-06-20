@@ -2,20 +2,26 @@
 
 package com.example.alvin.reminderprj;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.preference.DialogPreference;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class mainActivity extends AppCompatActivity {
@@ -30,12 +36,9 @@ public class mainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
          username = getIntent().getStringExtra("username");
-
         userUid = getIntent().getStringExtra("userUid");
-
-        setTitle("Welcome to ReminderPrj, " + username);
+        setTitle("Welcome, " + username);
         final String user = username;
-
         final ListView listView = (ListView) findViewById(R.id.activityList);
         adapter = new FirebaseListAdapter<blogContent>(this, blogContent.class, R.layout.activity_blog_content, //connects to firebase
                 FirebaseDatabase.getInstance().getReference(userUid)) { //Pulls user ID from firebase
@@ -63,7 +66,36 @@ public class mainActivity extends AppCompatActivity {
 
         };
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                blogContent itemRef = adapter.getItem(position);
+
+                CharSequence picker[] = new CharSequence[] {"Edit", "Delete"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity.this);
+                builder.setTitle("Choose an Action");
+                builder.setItems(picker, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch(which){
+                            case 0:{
+                                Toast.makeText(mainActivity.this, "0", Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            case 1:{
+                                Toast.makeText(mainActivity.this, "1", Toast.LENGTH_SHORT).show();
+                                break;
+                            }
+                            default:{
+                                break;
+                            }
+                        }
+                    }
+                });
+            }
+        });
     }
+
     public void addActivityIntent(View view){ //get user and password and sends screen to addactivity
         Intent intent = new Intent(mainActivity.this, addActivity.class);  //declares destination
         intent.putExtra("username", username);
