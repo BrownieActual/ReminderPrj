@@ -25,7 +25,6 @@
         <activity android:name=".mainActivity" />
         <activity android:name=".addActivity" />
         <activity android:name=".blogContent" />
-        <activity android:name=".editActivity"></activity>
     </application>
 
 </manifest>

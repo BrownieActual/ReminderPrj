@@ -67,6 +67,10 @@ public class addActivity extends AppCompatActivity {
 
         }
     }
+    public void discard(View view){
+        clearFields();
+        toMainActivity();
+    }
     private void toMainActivity() {  //Ends content addition and moves to main activity
         this.finish();
     }
