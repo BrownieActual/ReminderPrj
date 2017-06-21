@@ -142,8 +142,6 @@ public class startPage extends AppCompatActivity {
         intent.putExtra("userUid",userUid);
         startActivity(intent);
     }
-
-
     @Override
     public void onStart() {
         super.onStart();
@@ -157,6 +155,4 @@ public class startPage extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-
-
 }

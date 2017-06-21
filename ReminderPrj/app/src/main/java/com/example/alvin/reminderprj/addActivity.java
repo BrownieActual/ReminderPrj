@@ -57,11 +57,15 @@ public class addActivity extends AppCompatActivity {
          String titleMessage = title.getText().toString();
         //image64 = String of image
          String descripMessage = description.getText().toString();
-
-            blogContent chat = new blogContent(titleMessage, imageB64, descripMessage, username);
+        if(titleMessage != null  && imageB64 != null && descripMessage != null ) {
+            blogContent chat = new blogContent(titleMessage, imageB64, descripMessage);
             FirebaseDatabase.getInstance().getReference(userUid).push().setValue(chat);
             toMainActivity();
             clearFields();
+        }else{
+            Toast.makeText(addActivity.this, "Please fill all options", Toast.LENGTH_LONG).show();
+
+        }
     }
     private void toMainActivity() {  //Ends content addition and moves to main activity
         this.finish();
@@ -80,7 +84,7 @@ public class addActivity extends AppCompatActivity {
     public void SelectImage(View view) {  //function for selecting image
         CharSequence picker[] = new CharSequence[] {"Upload a photo", "Take a photo"};
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(addActivity.this);
         builder.setTitle("Choose an Action");
         builder.setItems(picker, new DialogInterface.OnClickListener() {
             @Override

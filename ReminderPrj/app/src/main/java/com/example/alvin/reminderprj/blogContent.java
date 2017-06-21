@@ -2,37 +2,25 @@
 
 package com.example.alvin.reminderprj;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.view.View;
-
 public class blogContent {
 
     private String title;
     private String description;
     private String img;
-    private String usercheck;
 
     public blogContent(){
 
     }
-    public blogContent(String title, String img, String description, String usercheck){  //recieve information from below functions
+    public blogContent(String title, String img, String description){  //recieve information from below functions
         this.title = title;
         this.description = description;
         this.img = img;
-        this.usercheck = usercheck;
 
     }
 
     // Get/Set functions for various datas
 
-    public void setUsercheck(String usercheck) {
-        this.usercheck = usercheck;
-    }
 
-    public String getUsercheck() {
-        return usercheck;
-    }
 
     public String getTitle() {
         return title;
@@ -57,5 +45,6 @@ public class blogContent {
     public void  setImg(String img) {
         this.img = img;
     }
+
 
 }
